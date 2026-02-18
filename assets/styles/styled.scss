@@ -1,17 +1,27 @@
+// Variables de color temáticas de Pinocho
+$primary-wood: #8B6F47;
+$secondary-wood: #A0826D;
+$accent-gold: #D4AF37;
+$accent-red: #C85A54;
+$dark-shadow: #2C1810;
+$light-cream: #F5E6D3;
+$text-dark: #3E2723;
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
 html,
 body {
   height: 100%;
 }
+
 body {
   align-items: center;
-  background: #642b73;
-  background: radial-gradient(#a6560f, #f4bc62);
+  background: linear-gradient(135deg, #3d2817 0%, #8B6F47 50%, #5D5D5D 100%);
   display: flex;
   font-family: "Open Sans", sans;
   justify-content: center;
@@ -19,54 +29,99 @@ body {
   perspective: 1800px;
   text-align: center;
   margin: 0 20px;
+  position: relative;
+
+  // Efecto de madera de fondo
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      repeating-linear-gradient(
+        90deg,
+        rgba(0,0,0,0.05) 0px,
+        rgba(0,0,0,0.05) 2px,
+        transparent 2px,
+        transparent 4px
+      );
+    pointer-events: none;
+    z-index: -1;
+  }
 
   .cards {
-    background: rgb(246, 245, 235);
-    border-radius: 15px;
-    box-shadow: 0px 10px 20px 20px rgba(0, 0, 0, 0.17);
+    background: linear-gradient(135deg, $light-cream 0%, #FDF8F1 100%);
+    border-radius: 20px;
+    box-shadow: 
+      0px 20px 60px rgba(0, 0, 0, 0.5),
+      0px 0px 2px rgba(212, 175, 55, 0.5) inset,
+      -5px -5px 15px rgba(255, 255, 255, 0.3) inset;
     display: inline-block;
-    padding: 30px 35px;
+    padding: 40px 45px;
     perspective: 1800px;
     text-align: left;
     transform-origin: 50% 50%;
     transform-style: preserve-3d;
     transform: rotateX(11deg) rotateY(16.5deg);
     min-width: 595px;
-    animation: scale-up-left
-
-    0.4s;
+    animation: scale-up-left 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 2px solid rgba(212, 175, 55, 0.3);
    
     h3 {
-      color: #c25c08;
-      font-size: 16px;
-      margin-bottom: 6px;
+      color: $accent-red;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
       transform: translateZ(25px);
+      text-transform: uppercase;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     }
+
     h1 {
-      color: #563e09;
-      font-size: 32px;
-      font-weight: 800;
+      background: linear-gradient(135deg, $primary-wood, $accent-red);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 42px;
+      font-weight: 900;
       letter-spacing: -1px;
-      margin-bottom: 30px;
+      margin-bottom: 35px;
       transform: translateZ(35px);
+      filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
     }
+
     .card {
-      border-radius: 15px;
-      box-shadow: 5px 5px 20px -5px rgba(0, 0, 0, 0.6);
+      border-radius: 20px;
+      box-shadow: 
+        0px 15px 35px rgba(0, 0, 0, 0.4),
+        0px 0px 0px 1px rgba(212, 175, 55, 0.2) inset,
+        -2px -2px 8px rgba(255, 255, 255, 0.4) inset;
       display: inline-block;
-      height: 250px;
+      height: 280px;
       overflow: hidden;
       perspective: 1200px;
       position: relative;
       transform-style: preserve-3d;
       transform: translateZ(35px);
-      transition: transform 200ms ease-out;
-      width: 175px;
+      transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+      width: 195px;
       text-align: center;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(212, 175, 55, 0.1));
+      border: 1px solid rgba(212, 175, 55, 0.3);
+
+      &:hover {
+        box-shadow: 
+          0px 25px 50px rgba(0, 0, 0, 0.5),
+          0px 0px 0px 2px rgba(212, 175, 55, 0.4) inset;
+        transform: translateZ(60px) scale(1.05);
+      }
 
       &:not(:last-child) {
         margin-right: 30px;
       }
+
       &:last-child {
         margin-top: 30px;
       }
@@ -81,35 +136,46 @@ body {
         transform: translateZ(-50px);
         z-index: 0;
         transition: all 0.3s;
+        filter: brightness(0.95) saturate(1.1);
       }
+
       .card__img {
         position: relative;
         height: 100%;
+        z-index: 1;
+        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+        transition: filter 300ms ease;
       }
+
       .card__text {
         align-items: center;
         background: linear-gradient(
           to bottom,
-          rgba(0, 0, 0, 0) 0%,
-          rgba(0, 0, 0, 0.55) 100%
+          rgba(62, 39, 35, 0) 0%,
+          rgba(62, 39, 35, 0.85) 100%
         );
         bottom: 0;
         display: flex;
         flex-direction: column;
-        height: 70px;
+        height: 80px;
         justify-content: center;
         position: absolute;
         width: 100%;
         z-index: 2;
+        border-top: 2px solid rgba(212, 175, 55, 0.3);
+
         .card__title {
-          color: #fff;
-          font-size: 18px;
-          font-weight: 700;
+          color: $accent-gold;
+          font-size: 20px;
+          font-weight: 800;
           padding: 0 10px;
-          margin-bottom: 3px;
+          margin: 0;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+          letter-spacing: 1px;
         }
       }
     }
+
     .card__one {
       .card__img {
         top: 14px;
@@ -117,17 +183,19 @@ body {
         height: 110%;
       }
       .card__bg {
-        background: url("/assets/img/bg3.png") center/cover no-repeat;
+        background: linear-gradient(135deg, #D2B48C 0%, #A0826D 100%);
       }
     }
+
     .card__two {
       .card__img {
         top: 25px;
       }
       .card__bg {
-        background: url("/assets/img/bg1.jpg") center/cover no-repeat;
+        background: linear-gradient(135deg, #C85A54 0%, #8B6F47 100%);
       }
     }
+
     .card__three {
       .card__img {
         top: 5px;
@@ -135,16 +203,35 @@ body {
         height: 110%;
       }
       .card__bg {
-        background: url("/assets/img/bg2.jpg") center/cover no-repeat;
+        background: linear-gradient(135deg, #8B7355 0%, #5D5D5D 100%);
       }
     }
   }
 }
+
+// Animaciones mejoradas
+@keyframes scale-up-left {
+  0% {
+    transform: scale(0.5) translateZ(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateZ(0);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 @media only screen and (max-width: 600px) {
   body {
     transform: scale(0.67);
   }
 }
-@keyframes scale-up-left
-
-{0%{transform:scale(.5);transform-origin:left center}100%{transform:scale(1);transform-origin:left center}}
