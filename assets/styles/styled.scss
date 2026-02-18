@@ -82,6 +82,7 @@ body {
     h1 {
       background: linear-gradient(135deg, $primary-wood, $accent-red);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
       font-size: 42px;
       font-weight: 900;
@@ -162,7 +163,7 @@ body {
         width: 100%;
         z-index: 2;
         border-top: 2px solid rgba(212, 175, 55, 0.3);
-        background-color: $primary-wood;
+        background-color: $primary-wood; 
 
 
         .card__title {
